@@ -126,6 +126,10 @@ Twittear lo que estoy escuchando (poder loguearse desde la aplicación a
 Problema
 \end_layout
 
+\begin_layout Subsection
+Antecedentes
+\end_layout
+
 \begin_layout Standard
 La razón por la cual queremos realizar este proyecto es para tener software
  que cumplan con nuestras necesidades y que hagan exactamente las cosas
@@ -133,6 +137,185 @@ La razón por la cual queremos realizar este proyecto es para tener software
  De esta forma, podemos realizar un programa que sea muy fácil de usar,
  que tenga una interfaz muy simple pero atractiva y que tenga todo lo que
  cualquier usuario necesite en un reproductor de música.
+\end_layout
+
+\begin_layout Subsection
+Amplitud del mismo
+\end_layout
+
+\begin_layout Standard
+Va a ser un programa simple pero poderoso en cuanto a las funciones que
+ podrá realizar.
+ No nos alejaremos del objetivo para poder realizar todas las funciones
+ que nos proponemos.
+ 
+\end_layout
+
+\begin_layout Subsection
+Relevancia
+\end_layout
+
+\begin_layout Standard
+Realizamos este proyecto ya que fue una de las pocas cosas que se nos ocurrieron
+, y nos pareció bastante útil para el uso común de cualquiera.
+ Por esto es que decidimos realizar un reproductor de música, para que la
+ gente que quisiera pudiera tener algo innovador, simple y completo, sin
+ tener que perder su tiempo con otros reproductores convencionales.
+\end_layout
+
+\begin_layout Section
+Justificación del uso de Bases de Datos
+\end_layout
+
+\begin_layout Standard
+Utilizaremos bases de datos para guardar los perfiles y las contraseñas,
+ además de guardar ahí el contenido de las listas de reproducción y quizás
+ las cuentas vinculadas a otras páginas.
+\end_layout
+
+\begin_layout Section
+Uso
+\end_layout
+
+\begin_layout Subsection
+Primer caso de uso
+\end_layout
+
+\begin_layout Standard
+Supongamos que quiero escuchar una canción:
+\end_layout
+
+\begin_layout Enumerate
+Abro el programa.
+\end_layout
+
+\begin_layout Enumerate
+Busco la canción en el buscador.
+\end_layout
+
+\begin_layout Enumerate
+Cargo la canción.
+\end_layout
+
+\begin_layout Enumerate
+Hago click en 
+\begin_inset Quotes eld
+\end_inset
+
+Play
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Segundo caso de uso
+\end_layout
+
+\begin_layout Standard
+Supongamos que quiero crear un nuevo perfil:
+\end_layout
+
+\begin_layout Enumerate
+Abro el programa.
+\end_layout
+
+\begin_layout Enumerate
+Busco en la barra de menú la sección de 
+\begin_inset Quotes eld
+\end_inset
+
+Perfiles
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Selecciono de la lista desplegable la opción 
+\begin_inset Quotes eld
+\end_inset
+
+Nuevo Perfil
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Coloco el nombre del perfil y la contraseña (Ejemplo: Elflala 3lfl4l4).
+\end_layout
+
+\begin_layout Enumerate
+Guardo.
+\end_layout
+
+\begin_layout Subsection
+Tercer caso de uso
+\end_layout
+
+\begin_layout Standard
+Supongamos que quiero crear una nueva lista de reproducción:
+\end_layout
+
+\begin_layout Enumerate
+Abro el programa.
+\end_layout
+
+\begin_layout Enumerate
+Selecciono el perfil que quiero utilizar.
+\end_layout
+
+\begin_layout Enumerate
+Ingreso la contraseña del perfil.
+\end_layout
+
+\begin_layout Enumerate
+Busco en la barra de menú la sección de 
+\begin_inset Quotes eld
+\end_inset
+
+Perfiles
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Selecciono de la lista desplegable la opción 
+\begin_inset Quotes eld
+\end_inset
+
+Nueva Lista de Reproducción
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Selecciono las canciones que quiero para mi lista de reproduccion.
+\end_layout
+
+\begin_layout Enumerate
+Guardo la lista.
+\end_layout
+
+\begin_layout Section
+Entorno
+\end_layout
+
+\begin_layout Standard
+Simple, pero lindo.
+ Con pocos colores, de un diseño moderno.
+ Barra de menu arriba de la pantalla, la barra de tareas por debajo de la
+ anterior.
+ Del lado izquierdo una barra con los perfiles y listas de reproducción.
+ Al centro los botones correspondientes y la canción que se escucha.
 \end_layout
 
 \begin_layout Section
@@ -143,7 +326,7 @@ Alcance
 Nuestro límite va ser el de twittear la canción que estoy escuchando además
  de ya tener los perfiles de usuario con listas de reproducción propias
  a cada uno protegidos con contraseña.
- En un futuro se podría ampliar, agregandole la reproducción de video también.
+ 
 \end_layout
 
 \end_body

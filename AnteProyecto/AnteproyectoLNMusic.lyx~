@@ -139,8 +139,11 @@ La razón por la cual queremos realizar este proyecto es para tener software
 Alcance
 \end_layout
 
-\begin_layout Subsection
-limite 
+\begin_layout Standard
+Nuestro límite va ser el de twittear la canción que estoy escuchando además
+ de ya tener los perfiles de usuario con listas de reproducción propias
+ a cada uno protegidos con contraseña.
+ En un futuro se podría ampliar, agregandole la reproducción de video también.
 \end_layout
 
 \end_body
