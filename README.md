@@ -1,4 +1,4 @@
 LNMusic
 =======
 
-Reproductor de musica en python.
+El mejor reproductor de musica hecho en python.
