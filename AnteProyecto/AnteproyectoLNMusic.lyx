@@ -5,7 +5,7 @@
 \textclass article
 \use_default_options true
 \maintain_unincluded_children false
-\language english
+\language spanish
 \language_package default
 \inputencoding auto
 \fontencoding global
@@ -25,6 +25,7 @@
 \bibtex_command default
 \index_command default
 \paperfontsize default
+\spacing single
 \use_hyperref false
 \papersize default
 \use_geometry false
@@ -60,7 +61,7 @@
 \begin_body
 
 \begin_layout Title
-LNMusic:Reproductor de Música
+LNMusic: Reproductor de Música
 \end_layout
 
 \begin_layout Author
@@ -68,7 +69,27 @@ Boné Nicolás, Luciano Castillo
 \end_layout
 
 \begin_layout Date
-30/6/2014
+30 / 06 / 2014
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\begin_inset Newpage pagebreak
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -76,11 +97,11 @@ Herramientas a utilizar
 \end_layout
 
 \begin_layout Itemize
-qt4designer
+Qt4designer
 \end_layout
 
 \begin_layout Itemize
-PyQt4 + PySide
+PySide (Alternativa a PyQt4)
 \end_layout
 
 \begin_layout Itemize
@@ -327,6 +348,66 @@ Nuestro límite va ser el de twittear la canción que estoy escuchando además
  de ya tener los perfiles de usuario con listas de reproducción propias
  a cada uno protegidos con contraseña.
  
+\end_layout
+
+\begin_layout Section
+Base de datos
+\end_layout
+
+\begin_layout Standard
+Adjuntamos archivo dia con el esquema entidad / relación de la base de datos
+ de nuestro proyecto (
+\begin_inset Quotes eld
+\end_inset
+
+LNMusic.dia
+\begin_inset Quotes erd
+\end_inset
+
+).
+ Este consta básicamente de las entidades: 
+\end_layout
+
+\begin_layout Itemize
+Perfil: es un usuario de nuestra aplicación.
+ Tiene 2 atributos:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Usuario (Clave primaria).
+\end_layout
+
+\begin_layout Itemize
+Contraseña.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Lista de reproducción: es la entidad que contiene los datos de las canciones
+ de cada lista de reproducción creada por un usuario o perfil.
+ Tiene 2 atributos:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Id (Clave primaria).
+\end_layout
+
+\begin_layout Itemize
+Canción (Multivalorado, ya que el mínimo es de una canción, pero puede haber
+ varias).
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+Tambien cuenta con una relación entre dichas 2 entidades, llamada:
+\end_layout
+
+\begin_layout Itemize
+Posee: identifica la pertenencia de cada lista de reproducción con su dueño.
+ Un perfil puede tener varias listas pero una lista no puede ser la misma
+ para 2 o más usuarios.
 \end_layout
 
 \end_body
