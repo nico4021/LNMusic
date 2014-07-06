@@ -1,4 +1,4 @@
 LNMusic
 =======
 
-Reproductor de musica.
+Reproductor de musica en python.
