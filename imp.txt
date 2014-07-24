@@ -1,0 +1,8 @@
+pynotify = Notificacion de ubuntu. Titulo, Descripcion e Imagen. Se usa para mostrar el nombre de la cancion.
+           
+           import pynotify
+           
+           nota = pynotify.Notification("Titulo", "Descripcion", "Imagen")
+           nota.show()
+
+
