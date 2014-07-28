@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="Line" name="lineHorizontal">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>150</y>
+      <width>801</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>110</y>
+      <width>161</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="btnLayout">
+     <item>
+      <widget class="QPushButton" name="btnAtrasar">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../../img/Knob Fast Rewind.png</normaloff>../../img/Knob Fast Rewind.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btnPlay">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../../img/Knob Play.png</normaloff>../../img/Knob Play.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btnAdelantar">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../../img/Knob Fast Forward.png</normaloff>../../img/Knob Fast Forward.png</iconset>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>110</y>
+      <width>571</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="musicLayout">
+     <item>
+      <widget class="QSlider" name="musicProgress">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="musicTime">
+       <property name="text">
+        <string>0:30/3:49</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QGraphicsView" name="graphicsView">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>111</width>
+      <height>91</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QWidget" name="verticalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>10</y>
+      <width>160</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="datosLayout">
+     <item>
+      <widget class="QLabel" name="lblTitulo">
+       <property name="font">
+        <font>
+         <family>Kinnari</family>
+         <pointsize>18</pointsize>
+         <weight>75</weight>
+         <italic>true</italic>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>CANCION</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="lblArtista">
+       <property name="font">
+        <font>
+         <family>Kinnari</family>
+         <pointsize>14</pointsize>
+         <weight>75</weight>
+         <italic>true</italic>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>ARTISTA</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="lblAlbum">
+       <property name="font">
+        <font>
+         <family>Kinnari</family>
+         <weight>75</weight>
+         <italic>true</italic>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>ALBUM</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="verticalLayoutWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>220</y>
+      <width>511</width>
+      <height>311</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="listaLayout">
+     <item>
+      <widget class="QListView" name="lvListaRep"/>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QPushButton" name="btnSearch">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>180</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../../img/Knob Search.png</normaloff>../../img/Knob Search.png</iconset>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="leSearch">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>180</y>
+      <width>351</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnSearch_2">
+    <property name="geometry">
+     <rect>
+      <x>660</x>
+      <y>180</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../../img/Knob Remove Red.png</normaloff>../../img/Knob Remove Red.png</iconset>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnSearch_3">
+    <property name="geometry">
+     <rect>
+      <x>620</x>
+      <y>180</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../../img/Knob Add.png</normaloff>../../img/Knob Add.png</iconset>
+    </property>
+   </widget>
+   <widget class="Line" name="line">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>160</y>
+      <width>20</width>
+      <height>391</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
+   </widget>
+   <widget class="QListWidget" name="listWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>180</y>
+      <width>181</width>
+      <height>351</height>
+     </rect>
+    </property>
+    <item>
+     <property name="text">
+      <string>Mi música</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="Line" name="line_2">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>540</y>
+      <width>911</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="Line" name="line_3">
+    <property name="geometry">
+     <rect>
+      <x>790</x>
+      <y>0</y>
+      <width>20</width>
+      <height>551</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuArchivo">
+    <property name="title">
+     <string>Archivo</string>
+    </property>
+    <addaction name="actionImportar"/>
+    <addaction name="separator"/>
+    <addaction name="actionNueva_Lista_De_Reproduccion"/>
+    <addaction name="actionEditar_Lista_De_Reproduccion"/>
+    <addaction name="actionEliminar_lista_De_Reproduccion"/>
+    <addaction name="separator"/>
+    <addaction name="actionNuevo_Usuario"/>
+   </widget>
+   <widget class="QMenu" name="menuUsuario">
+    <property name="title">
+     <string>Perfil</string>
+    </property>
+    <addaction name="actionCambiar_Contrase_a"/>
+    <addaction name="actionCambiar_Nombre_de_Usuario"/>
+    <addaction name="separator"/>
+    <addaction name="actionNuevo_Perfil"/>
+    <addaction name="separator"/>
+    <addaction name="actionCerrar_sesion"/>
+   </widget>
+   <addaction name="menuArchivo"/>
+   <addaction name="menuUsuario"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionImportar">
+   <property name="icon">
+    <iconset>
+     <normaloff>../../img/Knob Snapback.png</normaloff>../../img/Knob Snapback.png</iconset>
+   </property>
+   <property name="text">
+    <string>Importar</string>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionNueva_Lista_De_Reproduccion">
+   <property name="icon">
+    <iconset>
+     <normaloff>../../img/Knob Valid Green.png</normaloff>../../img/Knob Valid Green.png</iconset>
+   </property>
+   <property name="text">
+    <string>Nueva Lista De Reproduccion</string>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionEditar_Lista_De_Reproduccion">
+   <property name="icon">
+    <iconset>
+     <normaloff>../../img/Knob Valid Blue.png</normaloff>../../img/Knob Valid Blue.png</iconset>
+   </property>
+   <property name="text">
+    <string>Editar Lista De Reproduccion</string>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionEliminar_lista_De_Reproduccion">
+   <property name="icon">
+    <iconset>
+     <normaloff>../../img/Knob Cancel.png</normaloff>../../img/Knob Cancel.png</iconset>
+   </property>
+   <property name="text">
+    <string>Eliminar lista De Reproduccion</string>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionNuevo_Usuario">
+   <property name="icon">
+    <iconset>
+     <normaloff>../../img/Knob Red.png</normaloff>../../img/Knob Red.png</iconset>
+   </property>
+   <property name="text">
+    <string>Cerrar</string>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionNuevo_Usuario_2">
+   <property name="text">
+    <string>Juan</string>
+   </property>
+  </action>
+  <action name="actionCambiar_Contrase_a">
+   <property name="icon">
+    <iconset>
+     <normaloff>../../img/Knob Grey.png</normaloff>../../img/Knob Grey.png</iconset>
+   </property>
+   <property name="text">
+    <string>Cambiar Contraseña</string>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionCambiar_Nombre_de_Usuario">
+   <property name="icon">
+    <iconset>
+     <normaloff>../../img/Knob Green.png</normaloff>../../img/Knob Green.png</iconset>
+   </property>
+   <property name="text">
+    <string>Cambiar Nombre de Perfil</string>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionCerrar_sesion">
+   <property name="icon">
+    <iconset>
+     <normaloff>../../img/Knob Record Off.png</normaloff>../../img/Knob Record Off.png</iconset>
+   </property>
+   <property name="text">
+    <string>Cerrar sesion</string>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionNuevo_Perfil">
+   <property name="icon">
+    <iconset>
+     <normaloff>../../img/Knob Purple.png</normaloff>../../img/Knob Purple.png</iconset>
+   </property>
+   <property name="text">
+    <string>Nuevo Perfil</string>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
