@@ -12,4 +12,17 @@ Castillo:
     - Crear lista de tareas a realizar
     - Crear notificaciones en ubuntu con pynotify - "imp.txt"
     [-] Reproducir archivo de audio
-    
+
+
+Tareas a realizar
+=================
+
+Bone:
+    - Terminar base de datos
+    - Terminar interfaz grafica
+
+Castillo:
+    - Reproducir archivo de audio
+    - Vincular reproduccion con notificacion de ubuntu (que aparezca una notificacion de ubuntu cada vez que se reproduzca un archivo, informando del nombre de la cancion, artista y album)
+
+
