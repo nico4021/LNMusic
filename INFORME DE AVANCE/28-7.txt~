@@ -1,0 +1,15 @@
+Tareas realizadas
+=================
+
+Bone:
+    - Crear repositorio github
+    - Crear anteproyecto
+    [-] Crear base de datos en "db/base.db"
+    [-] Crear interfaz grafica en Qt4Designer
+
+Castillo:
+    - Crear anteproyecto
+    - Crear lista de tareas a realizar
+    - Crear notificaciones en ubuntu con pynotify - "imp.txt"
+    [-] Reproducir archivo de audio
+    
