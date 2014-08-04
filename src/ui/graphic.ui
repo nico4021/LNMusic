@@ -18,7 +18,7 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>150</y>
+      <y>160</y>
       <width>801</width>
       <height>21</height>
      </rect>
@@ -31,7 +31,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>110</y>
+      <y>120</y>
       <width>161</width>
       <height>41</height>
      </rect>
@@ -75,8 +75,8 @@
    <widget class="QWidget" name="horizontalLayoutWidget_2">
     <property name="geometry">
      <rect>
-      <x>190</x>
-      <y>110</y>
+      <x>200</x>
+      <y>120</y>
       <width>571</width>
       <height>41</height>
      </rect>
@@ -98,7 +98,7 @@
      </item>
     </layout>
    </widget>
-   <widget class="QGraphicsView" name="graphicsView">
+   <widget class="QGraphicsView" name="gvImagen">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -209,7 +209,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QPushButton" name="btnSearch_2">
+   <widget class="QPushButton" name="btnDelete">
     <property name="geometry">
      <rect>
       <x>660</x>
@@ -226,7 +226,7 @@
       <normaloff>../../img/Knob Remove Red.png</normaloff>../../img/Knob Remove Red.png</iconset>
     </property>
    </widget>
-   <widget class="QPushButton" name="btnSearch_3">
+   <widget class="QPushButton" name="btnAdd">
     <property name="geometry">
      <rect>
       <x>620</x>
@@ -247,9 +247,9 @@
     <property name="geometry">
      <rect>
       <x>200</x>
-      <y>160</y>
+      <y>170</y>
       <width>20</width>
-      <height>391</height>
+      <height>381</height>
      </rect>
     </property>
     <property name="orientation">
@@ -314,8 +314,6 @@
     <addaction name="actionImportar"/>
     <addaction name="separator"/>
     <addaction name="actionNueva_Lista_De_Reproduccion"/>
-    <addaction name="actionEditar_Lista_De_Reproduccion"/>
-    <addaction name="actionEliminar_lista_De_Reproduccion"/>
     <addaction name="separator"/>
     <addaction name="actionNuevo_Usuario"/>
    </widget>
@@ -330,8 +328,25 @@
     <addaction name="separator"/>
     <addaction name="actionCerrar_sesion"/>
    </widget>
+   <widget class="QMenu" name="menuAyuda">
+    <property name="title">
+     <string>Ayuda</string>
+    </property>
+    <addaction name="actionTutorial"/>
+    <addaction name="actionAcerca_de"/>
+   </widget>
+   <widget class="QMenu" name="menuListas_de_Reproducci_n">
+    <property name="title">
+     <string>Listas de Reproducción</string>
+    </property>
+    <addaction name="actionNueva_Lista_de_Reproducci_n"/>
+    <addaction name="actionGuardar"/>
+    <addaction name="actionEliminar_Lista_de_Reproducci_n"/>
+   </widget>
    <addaction name="menuArchivo"/>
    <addaction name="menuUsuario"/>
+   <addaction name="menuListas_de_Reproducci_n"/>
+   <addaction name="menuAyuda"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionImportar">
@@ -349,10 +364,10 @@
   <action name="actionNueva_Lista_De_Reproduccion">
    <property name="icon">
     <iconset>
-     <normaloff>../../img/Knob Valid Green.png</normaloff>../../img/Knob Valid Green.png</iconset>
+     <normaloff>../../img/Knob Orange.png</normaloff>../../img/Knob Orange.png</iconset>
    </property>
    <property name="text">
-    <string>Nueva Lista De Reproduccion</string>
+    <string>Preferencias</string>
    </property>
    <property name="iconVisibleInMenu">
     <bool>true</bool>
@@ -442,6 +457,66 @@
    </property>
    <property name="text">
     <string>Nuevo Perfil</string>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionTutorial">
+   <property name="icon">
+    <iconset>
+     <normaloff>../../img/Knob Help.png</normaloff>../../img/Knob Help.png</iconset>
+   </property>
+   <property name="text">
+    <string>Manual</string>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionAcerca_de">
+   <property name="icon">
+    <iconset>
+     <normaloff>../../img/Knob Info.png</normaloff>../../img/Knob Info.png</iconset>
+   </property>
+   <property name="text">
+    <string>Acerca de...</string>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionNueva_Lista_de_Reproducci_n">
+   <property name="icon">
+    <iconset>
+     <normaloff>../../img/Knob Add.png</normaloff>../../img/Knob Add.png</iconset>
+   </property>
+   <property name="text">
+    <string>Nueva Lista de Reproducción</string>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionGuardar">
+   <property name="icon">
+    <iconset>
+     <normaloff>../../img/Knob Download.png</normaloff>../../img/Knob Download.png</iconset>
+   </property>
+   <property name="text">
+    <string>Guardar </string>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionEliminar_Lista_de_Reproducci_n">
+   <property name="icon">
+    <iconset>
+     <normaloff>../../img/Knob Cancel.png</normaloff>../../img/Knob Cancel.png</iconset>
+   </property>
+   <property name="text">
+    <string>Eliminar Lista de Reproducción</string>
    </property>
    <property name="iconVisibleInMenu">
     <bool>true</bool>
