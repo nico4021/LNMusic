@@ -1,0 +1,18 @@
+Tareas realizadas ( [-] -> en proceso )
+=================
+
+Bone:
+    [-] Crear un perfil: guardar usuario y contraseña en la base de datos (tabla Perfil)
+
+Castillo:
+    [-] Importar canciones: leer metadatos y guardarlos en la base de datos (tabla Cancion)
+
+
+Tareas a realizar
+=================
+
+Bone:
+    - Terminar "Crear un perfil"
+
+Castillo:
+    - Terminar "Importar canciones"

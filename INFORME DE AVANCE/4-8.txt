@@ -1,0 +1,20 @@
+Tareas realizadas
+=================
+
+Bone:
+    - Terminar base de datos
+    - Terminar interfaz grafica
+
+Castillo:
+    - Reproducir archivo de audio
+    - Vincular reproduccion con notificacion de ubuntu (que aparezca una notificacion de ubuntu cada vez que se reproduzca un archivo, informando del nombre de la cancion, artista y album)
+
+
+Tareas a realizar
+=================
+
+Bone:
+    - Crear un perfil: guardar usuario y contraseña en la base de datos (tabla Perfil)
+
+Castillo:
+    - Importar canciones: leer metadatos y guardarlos en la base de datos (tabla Cancion)
