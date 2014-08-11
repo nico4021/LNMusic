@@ -114,7 +114,7 @@
       <x>130</x>
       <y>10</y>
       <width>160</width>
-      <height>91</height>
+      <height>119</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="datosLayout">
