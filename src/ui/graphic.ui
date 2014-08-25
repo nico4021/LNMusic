@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>600</height>
+    <height>609</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -44,7 +44,7 @@
        </property>
        <property name="icon">
         <iconset>
-         <normaloff>../../img/Knob Fast Rewind.png</normaloff>../../img/Knob Fast Rewind.png</iconset>
+         <normaloff>img/Knob Fast Rewind.png</normaloff>img/Knob Fast Rewind.png</iconset>
        </property>
       </widget>
      </item>
@@ -55,7 +55,7 @@
        </property>
        <property name="icon">
         <iconset>
-         <normaloff>../../img/Knob Play.png</normaloff>../../img/Knob Play.png</iconset>
+         <normaloff>img/Knob Play.png</normaloff>img/Knob Play.png</iconset>
        </property>
       </widget>
      </item>
@@ -66,7 +66,7 @@
        </property>
        <property name="icon">
         <iconset>
-         <normaloff>../../img/Knob Fast Forward.png</normaloff>../../img/Knob Fast Forward.png</iconset>
+         <normaloff>img/Knob Fast Forward.png</normaloff>img/Knob Fast Forward.png</iconset>
        </property>
       </widget>
      </item>
@@ -196,7 +196,7 @@
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>../../img/Knob Search.png</normaloff>../../img/Knob Search.png</iconset>
+      <normaloff>img/Knob Search.png</normaloff>img/Knob Search.png</iconset>
     </property>
    </widget>
    <widget class="QLineEdit" name="leSearch">
@@ -223,7 +223,7 @@
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>../../img/Knob Remove Red.png</normaloff>../../img/Knob Remove Red.png</iconset>
+      <normaloff>img/Knob Remove Red.png</normaloff>img/Knob Remove Red.png</iconset>
     </property>
    </widget>
    <widget class="QPushButton" name="btnAdd">
@@ -240,7 +240,7 @@
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>../../img/Knob Add.png</normaloff>../../img/Knob Add.png</iconset>
+      <normaloff>img/Knob Add.png</normaloff>img/Knob Add.png</iconset>
     </property>
    </widget>
    <widget class="Line" name="line">
@@ -352,7 +352,7 @@
   <action name="actionImportar">
    <property name="icon">
     <iconset>
-     <normaloff>../../img/Knob Snapback.png</normaloff>../../img/Knob Snapback.png</iconset>
+     <normaloff>img/Knob Snapback.png</normaloff>img/Knob Snapback.png</iconset>
    </property>
    <property name="text">
     <string>Importar</string>
@@ -364,7 +364,7 @@
   <action name="actionNueva_Lista_De_Reproduccion">
    <property name="icon">
     <iconset>
-     <normaloff>../../img/Knob Orange.png</normaloff>../../img/Knob Orange.png</iconset>
+     <normaloff>img/Knob Orange.png</normaloff>img/Knob Orange.png</iconset>
    </property>
    <property name="text">
     <string>Preferencias</string>
@@ -400,7 +400,7 @@
   <action name="actionNuevo_Usuario">
    <property name="icon">
     <iconset>
-     <normaloff>../../img/Knob Red.png</normaloff>../../img/Knob Red.png</iconset>
+     <normaloff>img/Knob Red.png</normaloff>img/Knob Red.png</iconset>
    </property>
    <property name="text">
     <string>Cerrar</string>
@@ -417,7 +417,7 @@
   <action name="actionCambiar_Contrase_a">
    <property name="icon">
     <iconset>
-     <normaloff>../../img/Knob Grey.png</normaloff>../../img/Knob Grey.png</iconset>
+     <normaloff>img/Knob Grey.png</normaloff>img/Knob Grey.png</iconset>
    </property>
    <property name="text">
     <string>Cambiar Contraseña</string>
@@ -429,7 +429,7 @@
   <action name="actionCambiar_Nombre_de_Usuario">
    <property name="icon">
     <iconset>
-     <normaloff>../../img/Knob Green.png</normaloff>../../img/Knob Green.png</iconset>
+     <normaloff>img/Knob Green.png</normaloff>img/Knob Green.png</iconset>
    </property>
    <property name="text">
     <string>Cambiar Nombre de Perfil</string>
@@ -441,7 +441,7 @@
   <action name="actionCerrar_sesion">
    <property name="icon">
     <iconset>
-     <normaloff>../../img/Knob Record Off.png</normaloff>../../img/Knob Record Off.png</iconset>
+     <normaloff>img/Knob Record Off.png</normaloff>img/Knob Record Off.png</iconset>
    </property>
    <property name="text">
     <string>Cerrar sesion</string>
@@ -453,7 +453,7 @@
   <action name="actionNuevo_Perfil">
    <property name="icon">
     <iconset>
-     <normaloff>../../img/Knob Purple.png</normaloff>../../img/Knob Purple.png</iconset>
+     <normaloff>img/Knob Purple.png</normaloff>img/Knob Purple.png</iconset>
    </property>
    <property name="text">
     <string>Nuevo Perfil</string>
@@ -465,7 +465,7 @@
   <action name="actionTutorial">
    <property name="icon">
     <iconset>
-     <normaloff>../../img/Knob Help.png</normaloff>../../img/Knob Help.png</iconset>
+     <normaloff>img/Knob Help.png</normaloff>img/Knob Help.png</iconset>
    </property>
    <property name="text">
     <string>Manual</string>
@@ -477,7 +477,7 @@
   <action name="actionAcerca_de">
    <property name="icon">
     <iconset>
-     <normaloff>../../img/Knob Info.png</normaloff>../../img/Knob Info.png</iconset>
+     <normaloff>img/Knob Info.png</normaloff>img/Knob Info.png</iconset>
    </property>
    <property name="text">
     <string>Acerca de...</string>
@@ -489,7 +489,7 @@
   <action name="actionNueva_Lista_de_Reproducci_n">
    <property name="icon">
     <iconset>
-     <normaloff>../../img/Knob Add.png</normaloff>../../img/Knob Add.png</iconset>
+     <normaloff>img/Knob Add.png</normaloff>img/Knob Add.png</iconset>
    </property>
    <property name="text">
     <string>Nueva Lista de Reproducción</string>
@@ -501,7 +501,7 @@
   <action name="actionGuardar">
    <property name="icon">
     <iconset>
-     <normaloff>../../img/Knob Download.png</normaloff>../../img/Knob Download.png</iconset>
+     <normaloff>img/Knob Download.png</normaloff>img/Knob Download.png</iconset>
    </property>
    <property name="text">
     <string>Guardar </string>
@@ -513,7 +513,7 @@
   <action name="actionEliminar_Lista_de_Reproducci_n">
    <property name="icon">
     <iconset>
-     <normaloff>../../img/Knob Cancel.png</normaloff>../../img/Knob Cancel.png</iconset>
+     <normaloff>img/Knob Cancel.png</normaloff>img/Knob Cancel.png</iconset>
    </property>
    <property name="text">
     <string>Eliminar Lista de Reproducción</string>

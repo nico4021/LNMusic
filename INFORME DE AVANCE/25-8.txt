@@ -1,0 +1,17 @@
+Tareas realizadas ( [-] -> en proceso )
+=================
+
+Bone:
+    [-] Crear y modificar perfiles.
+
+Castillo:
+    [-] Importar canciones.
+
+Tareas a realizar
+=================
+
+Bone:
+    - Terminar ABM.
+
+Castillo:
+    - Implementar las funciones al proyecto.
