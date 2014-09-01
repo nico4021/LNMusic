@@ -70,6 +70,7 @@ class Reproductor(QtGui.QMainWindow):
         if archivo[1]:
             self.path = archivo[0]
             self.player.setCurrentSource(self.path)
+            
 
     def nuevoPerfil(self):
         '''Crea un nuevo perfil con los datos ingresados'''

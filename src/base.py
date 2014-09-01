@@ -29,7 +29,9 @@ class BaseDeDatos:
         self.cur.execute("INSERT INTO Perfil(usuario, password) VALUES(?, ?)", (user, pas))
         self.con.commit()
 
-#    def 
+#    def editarPerfil(self):
+        
+
 
     def close(self):
         self.con.close()
