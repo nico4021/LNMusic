@@ -124,12 +124,15 @@
     <property name="geometry">
      <rect>
       <x>130</x>
-      <y>0</y>
-      <width>107</width>
-      <height>115</height>
+      <y>4</y>
+      <width>641</width>
+      <height>111</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
+     <property name="spacing">
+      <number>0</number>
+     </property>
      <item>
       <widget class="QLabel" name="lblTitulo">
        <property name="font">
@@ -184,13 +187,13 @@
      <rect>
       <x>230</x>
       <y>220</y>
-      <width>511</width>
+      <width>541</width>
       <height>311</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="listaLayout">
      <item>
-      <widget class="QListView" name="lvListaRep"/>
+      <widget class="QListWidget" name="lstListaRep"/>
      </item>
     </layout>
    </widget>

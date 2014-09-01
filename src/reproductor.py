@@ -67,6 +67,11 @@ class Reproductor(QtGui.QMainWindow):
 
         # Actualizo notificacion
         self.noti.update(nombre, artista+'\n'+album)
+        # Actualizo informacion en ventana
+        self.ui.lblTitulo.setText(nombre)
+        self.ui.lblArtista.setText(artista)
+        self.ui.lblAlbum.setText(album)
+        self.ui.setWindowTitle("LNMusic - " + nombre)
     
     def abrirArchivo(self):
         '''Abre un archivo de audio'''
@@ -79,6 +84,7 @@ class Reproductor(QtGui.QMainWindow):
         if archivo[1]:
             self.path = archivo[0]
             self.player.setCurrentSource(self.path)
+            self.ui.lstListaRep.addItem(self.path)
 
     def nuevoPerfil(self):
         '''Crea un nuevo perfil con los datos ingresados'''
