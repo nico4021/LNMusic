@@ -29,9 +29,20 @@ class BaseDeDatos:
         self.cur.execute("INSERT INTO Perfil(usuario, password) VALUES(?, ?)", (user, pas))
         self.con.commit()
 
-#    def editarPerfil(self):
-        
-
+    def editarPerfil(self, newN, newP, user, pas):
+        #Guardamos los cambios para que pase algo. 
+        if (confpas==passNueva):
+            code = "UPDATE Perfil set usuario=\'%s\' where usuario=\'%s\' and password=\'%s\'" % (newN, user, pas)
+            cursor.execute(code)
+            con.commit()
+            
+            #Actualizamos los datos de la base de datos
+            code1 = "UPDATE Perfil set password=\'%s\' where usuario=\'%s\' and password=\'%s\'" % (newP, user, pas)
+            cursor.execute(code1)
+            #Guardamos los cambios para que pase algo. 
+            con.commit()
+        else: 
+            print "pelotudo confirma bien las cosas"
 
     def close(self):
         self.con.close()
