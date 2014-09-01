@@ -116,7 +116,7 @@
       <x>10</x>
       <y>10</y>
       <width>111</width>
-      <height>91</height>
+      <height>101</height>
      </rect>
     </property>
    </widget>
@@ -124,18 +124,18 @@
     <property name="geometry">
      <rect>
       <x>130</x>
-      <y>10</y>
-      <width>160</width>
-      <height>119</height>
+      <y>0</y>
+      <width>107</width>
+      <height>115</height>
      </rect>
     </property>
-    <layout class="QVBoxLayout" name="datosLayout">
+    <layout class="QVBoxLayout" name="verticalLayout">
      <item>
       <widget class="QLabel" name="lblTitulo">
        <property name="font">
         <font>
          <family>Kinnari</family>
-         <pointsize>18</pointsize>
+         <pointsize>17</pointsize>
          <weight>75</weight>
          <italic>true</italic>
          <bold>true</bold>
@@ -151,7 +151,7 @@
        <property name="font">
         <font>
          <family>Kinnari</family>
-         <pointsize>14</pointsize>
+         <pointsize>13</pointsize>
          <weight>75</weight>
          <italic>true</italic>
          <bold>true</bold>

@@ -12,6 +12,10 @@ class Reproductor(QtGui.QMainWindow):
     def __init__(self, ui, login):
         QtGui.QMainWindow.__init__(self)
         
+        # Inicio pynotify
+        pynotify.init("LNMusic")
+        self.noti = pynotify.Notification(' ', ' ')
+        
         # Creo el gestor de base de datos
         self.db = BaseDeDatos()
         
@@ -30,10 +34,14 @@ class Reproductor(QtGui.QMainWindow):
         self.connect(self.ui.btnAdd, QtCore.SIGNAL("clicked()"), self.abrirArchivo)
         self.connect(self.ui.actionNuevo_Perfil, QtCore.SIGNAL("triggered()"), self.nuevoPerfil)
         self.connect(self.ui.actionCerrar, QtCore.SIGNAL("triggered()"), self.ui.close)
-        '''
-        self.connect(self.ui.btnPause, QtCore.SIGNAL("clicked()"), self.pause)
-        self.connect(self.player, QtCore.SIGNAL("metaDataChanged()"), self.metaData)
-        '''
+        self.player.metaDataChanged.connect(self.metaData)
+        self.player.stateChanged.connect(self.state)
+        #self.connect(self.player, QtCore.SIGNAL("metaDataChanged()"), self.metaData)
+
+    def state(self, estado):
+        if estado == Phonon.State.PlayingState:
+            self.noti.show()
+
     def play(self):
         '''Reproduce un archivo'''
         # Estado del reproductor
@@ -49,14 +57,16 @@ class Reproductor(QtGui.QMainWindow):
             self.player.play()
             # Cambia el icono
             self.ui.btnPlay.setIcon(QtGui.QIcon("img/Knob Pause.png"))
-        
-    def pause(self):
-        '''Pausa la reproduccion'''
-        self.player.pause()
-    
+
     def metaData(self):
         '''Devuelve los metadatos del archivo de reproduccion'''
-        print self.player.metaData()
+        # Obtengo metadatos
+        nombre = self.player.metaData("TITLE")[0]
+        artista = self.player.metaData("ARTIST")[0]
+        album = self.player.metaData("ALBUM")[0]
+
+        # Actualizo notificacion
+        self.noti.update(nombre, artista+'\n'+album)
     
     def abrirArchivo(self):
         '''Abre un archivo de audio'''
@@ -65,7 +75,6 @@ class Reproductor(QtGui.QMainWindow):
             u"Abrir Archivo",
             u"/",
             u"Archivos de Audio (*.mp3 *.wav *.ogg)")
-        print archivo
         
         if archivo[1]:
             self.path = archivo[0]
@@ -99,8 +108,9 @@ class Reproductor(QtGui.QMainWindow):
         
         self.login.txtUsuario.setFocus()
 
-# Creo una aplicacion
+# Creo una aplicacion, le pongo nombre
 app = QtGui.QApplication(sys.argv)
+app.setApplicationName("LNMusic")
 # Ejecuto la clase
 rep = Reproductor("graphic.ui", "login.ui")
 sys.exit(app.exec_())
