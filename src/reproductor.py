@@ -61,9 +61,21 @@ class Reproductor(QtGui.QMainWindow):
     def metaData(self):
         '''Devuelve los metadatos del archivo de reproduccion'''
         # Obtengo metadatos
-        nombre = self.player.metaData("TITLE")[0]
-        artista = self.player.metaData("ARTIST")[0]
-        album = self.player.metaData("ALBUM")[0]
+        try:
+            nombre = self.player.metaData("TITLE")[0]
+        except:
+            nombre = " - Sin nombre - "
+        try:
+            artista = self.player.metaData("ARTIST")[0]
+        except:
+            artista = " - Sin artista - "
+        try:
+            album = self.player.metaData("ALBUM")[0]
+        except:
+            album = " - Sin album - "
+        
+        # Muestro los datos 
+#        print self.player.metaData()
 
         # Actualizo notificacion
         self.noti.update(nombre, artista+'\n'+album)
