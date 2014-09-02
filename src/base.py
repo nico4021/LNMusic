@@ -5,10 +5,10 @@ import sys
 
 class BaseDeDatos:
     '''Es la clase que se encarga de la base de datos'''
-    def __init__(self):
+    def __init__(self, ruta):
         '''Inicia self.conexion y crea las tablas si no existen'''
         # Realizamos la self.conection self.con la base de datos. De no existir, se crea.
-        self.con = lite.connect('base.db')
+        self.con = lite.connect(ruta)
         # El "self.cur" seria el manejador de todas las funciones SQL. 
         self.cur = self.con.cursor()
         # self.con "self.cur.execute", llamamos a la función SQL que necesitemos, en este caso, creamos la Tabla Cancion   

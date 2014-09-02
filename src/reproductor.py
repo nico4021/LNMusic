@@ -17,7 +17,7 @@ class Reproductor(QtGui.QMainWindow):
         self.noti = pynotify.Notification(' ', ' ')
         
         # Creo el gestor de base de datos
-        self.db = BaseDeDatos()
+        self.db = BaseDeDatos('db/base.db')
         
         # Cargo el archivo con los elementos graficos
         loader = QtUiTools.QUiLoader()
