@@ -21,13 +21,57 @@ class Reproductor(QtGui.QMainWindow):
         
         # Cargo el archivo con los elementos graficos
         loader = QtUiTools.QUiLoader()
-        self.ui = loader.load(ui)
         self.login = loader.load(login)
+        self.ui = loader.load(ui)
+
+        # Abro el login
+        self.login.show()
+        self.login.txtUsuario.setFocus()
+
+        # Si se elije aceptar
+        def ingresar():
+            # Obtengo usuario y contraseña ingresados
+            usuario = self.login.txtUsuario.text()
+            contra = self.login.txtPass.text()
+            # Busco en la base de datos al perfil con dicho nombre de usuario
+            perfil = self.db.obtenerPerfil(usuario)
+
+            # Si no se ha ingresado alguno de los campos
+            if not(usuario and contra):
+                # Muestro una advertencia
+                QtGui.QMessageBox.warning(self, 'Advertencia!!!', u'No se han ingresado todos los campos. Por favor, elija un usuario y una contraseña validos.')
+
+            # Si no existe ningun perfil con ese nombre
+            elif not perfil:
+                # Muestro un error
+                QtGui.QMessageBox.critical(self, 'Error!!!', u'El usuario %s no existe.' % usuario)
+
+            # Si la contraseña es incorrecta
+            elif contra != perfil[0][1]:
+                # Muestro un error
+                QtGui.QMessageBox.critical(self, 'Error!!!', u'Contraseña incorrecta.')
+
+            else:
+                # Inicia el reproductor de musica
+                self.iniciar_reproductor(usuario)
+
+        # Conecto el evento cuando se pulsa aceptar
+        self.login.btnBox.accepted.connect(ingresar)
+
+    def iniciar_reproductor(self, titulo):
         # Abro la ventana
         self.ui.show()
+        self.ui.setWindowTitle(titulo)
         
         # Creo un reproductor de tipo musica
         self.player = Phonon.createPlayer(Phonon.MusicCategory)
+        self.player.setTickInterval(1000)
+        
+        # Creo slider del audio
+        slider = Phonon.SeekSlider(self)
+        slider.setMediaObject(self.player)
+        
+        self.ui.seekLayout.addWidget(slider)
         
         # Conecto los eventos
         self.connect(self.ui.btnPlay, QtCore.SIGNAL("clicked()"), self.play)
@@ -36,7 +80,13 @@ class Reproductor(QtGui.QMainWindow):
         self.connect(self.ui.actionCerrar, QtCore.SIGNAL("triggered()"), self.ui.close)
         self.player.metaDataChanged.connect(self.metaData)
         self.player.stateChanged.connect(self.state)
+        self.player.tick.connect(self.tick)
         #self.connect(self.player, QtCore.SIGNAL("metaDataChanged()"), self.metaData)
+
+    def tick(self, time):
+        '''Se encarga de llevar la cuenta del tiempo transcurrido'''
+        displayTime = QtCore.QTime(0, (time / 60000) % 60, (time / 1000) % 60)
+        self.ui.musicTime.setText(displayTime.toString('mm:ss'))
 
     def state(self, estado):
         if estado == Phonon.State.PlayingState:
@@ -57,6 +107,7 @@ class Reproductor(QtGui.QMainWindow):
             self.player.play()
             # Cambia el icono
             self.ui.btnPlay.setIcon(QtGui.QIcon("img/Knob Pause.png"))
+            print self.player.currentTime()
 
     def metaData(self):
         '''Devuelve los metadatos del archivo de reproduccion'''
