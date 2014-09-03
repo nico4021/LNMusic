@@ -29,9 +29,11 @@ class BaseDeDatos:
         self.cur.execute("INSERT INTO Perfil(usuario, password) VALUES(?, ?)", (user, pas))
         self.con.commit()
 
-#    def editarPerfil(self):
-        
-
+    def obtenerPerfil(self, user):
+        '''Devuelve el perfil del usuario seleccionado o un vector vacio'''
+        # Se fija si hay algun perfil con ese nombre
+        self.cur.execute("SELECT * FROM Perfil WHERE usuario = \'%s\'" % user)
+        return self.cur.fetchall()
 
     def close(self):
         self.con.close()
