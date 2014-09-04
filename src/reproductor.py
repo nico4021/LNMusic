@@ -29,6 +29,12 @@ class Reproductor(QtGui.QMainWindow):
         # Abro el login
         self.login.show()
         self.login.txtUsuario.setFocus()
+        
+        lista = ['aasdf', 'fsfsag', 'afwqef']
+        self.login.completer = QtGui.QCompleter(lista, self.login.txtUsuario)
+        #self.login.completer.setCompletionMode(QtGui.QCompleter.PopupCompletion)
+        #self.login.completer.setCaseSensitivity(QtCore.Qt.CaseInsensitive)
+        self.login.txtUsuario.setCompleter(self.login.completer)
 
         # Si se elije aceptar
         def ingresar():
@@ -99,12 +105,14 @@ class Reproductor(QtGui.QMainWindow):
     def state(self, estado):
         if estado == Phonon.State.PlayingState:
             self.noti.show()
+            # Cambia el icono
+            self.ui.btnPlay.setIcon(QtGui.QIcon("img/Knob Pause.png"))
         elif estado == Phonon.State.StoppedState:
             # Cambia el icono
             self.ui.btnPlay.setIcon(QtGui.QIcon("img/Knob Play.png"))
         elif estado == Phonon.State.PausedState:
             # Cambia el icono
-            self.ui.btnPlay.setIcon(QtGui.QIcon("img/Knob Pause.png"))
+            self.ui.btnPlay.setIcon(QtGui.QIcon("img/Knob Play.png"))
 
     def play(self):
         '''Reproduce un archivo'''
@@ -151,7 +159,7 @@ class Reproductor(QtGui.QMainWindow):
             self,
             u"Abrir Archivo",
             u"/",
-            u"Archivos de Audio (*.mp3 *.wav *.ogg)")
+            u"Archivos de Audio (*)")
         
         if archivo[1]:
             self.path = archivo[0]
@@ -165,7 +173,7 @@ class Reproductor(QtGui.QMainWindow):
     def nuevoPerfil(self):
         '''Crea un nuevo perfil con los datos ingresados'''
         # Cambio el titulo del dialog
-        self.login.setWindowTitle("Nuevo perfil")
+        self.login.setWindowTitle(self.titulo + " - Nuevo perfil")
         
         # Limpio los campos
         self.login.txtPass.setText('')
