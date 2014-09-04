@@ -50,6 +50,16 @@ class BaseDeDatos:
         self.cur.execute("SELECT * FROM Perfil WHERE usuario = \'%s\'" % user)
         return self.cur.fetchall()
     
+    def obtenerUsuarios(self):
+        '''Devuelve una lista de usuarios registrados'''
+        # Busca todos los usuarios
+        self.cur.execute("SELECT usuario FROM Perfil")
+        users_db = self.cur.fetchall()
+        users = []
+        for i in users_db:
+            users.append(i[0])
+        return users
+    
     def borrarPerfil(self, user, pas):
         '''Devuelve el perfil del usuario seleccionado o un vector vacio'''
         # Borra el perfil siempre y cuando se haya introducido la contraseña de ese perfil bien

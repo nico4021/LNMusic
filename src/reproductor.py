@@ -30,10 +30,10 @@ class Reproductor(QtGui.QMainWindow):
         self.login.show()
         self.login.txtUsuario.setFocus()
         
-        lista = ['aasdf', 'fsfsag', 'afwqef']
+        # Agrego lista desplegable de usuario
+        lista = self.db.obtenerUsuarios()
+        
         self.login.completer = QtGui.QCompleter(lista, self.login.txtUsuario)
-        #self.login.completer.setCompletionMode(QtGui.QCompleter.PopupCompletion)
-        #self.login.completer.setCaseSensitivity(QtCore.Qt.CaseInsensitive)
         self.login.txtUsuario.setCompleter(self.login.completer)
 
         # Si se elije aceptar
