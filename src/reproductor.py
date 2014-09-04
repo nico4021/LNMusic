@@ -9,6 +9,8 @@ from base import BaseDeDatos
 
 class Reproductor(QtGui.QMainWindow):
     '''Es la clase que gestiona el reproductor'''
+    titulo = "LNMusic"
+    
     def __init__(self, ui, login):
         QtGui.QMainWindow.__init__(self)
         
@@ -58,10 +60,11 @@ class Reproductor(QtGui.QMainWindow):
         # Conecto el evento cuando se pulsa aceptar
         self.login.btnBox.accepted.connect(ingresar)
 
-    def iniciar_reproductor(self, titulo):
+    def iniciar_reproductor(self, usuario):
         # Abro la ventana
         self.ui.show()
-        self.ui.setWindowTitle(titulo)
+        self.titulo = self.titulo + "(" + usuario + ")"
+        self.ui.setWindowTitle(self.titulo)
         
         # Creo un reproductor de tipo musica
         self.player = Phonon.createPlayer(Phonon.MusicCategory)
@@ -134,7 +137,7 @@ class Reproductor(QtGui.QMainWindow):
         self.ui.lblTitulo.setText(nombre)
         self.ui.lblArtista.setText(artista)
         self.ui.lblAlbum.setText(album)
-        self.ui.setWindowTitle("LNMusic - " + nombre)
+        self.ui.setWindowTitle(self.titulo + " - " + nombre)
     
     def abrirArchivo(self):
         '''Abre un archivo de audio'''
@@ -153,6 +156,12 @@ class Reproductor(QtGui.QMainWindow):
         '''Crea un nuevo perfil con los datos ingresados'''
         # Cambio el titulo del dialog
         self.login.setWindowTitle("Nuevo perfil")
+        
+        # Limpio los campos
+        self.login.txtPass.setText('')
+        self.login.txtUsuario.setText('')
+        self.login.txtUsuario.setFocus()
+        
         # Lo ejecuto
         if self.login.exec_():
             usuario = self.login.txtUsuario.text()
