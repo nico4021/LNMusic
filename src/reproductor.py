@@ -66,6 +66,11 @@ class Reproductor(QtGui.QMainWindow):
         self.titulo = self.titulo + "(" + usuario + ")"
         self.ui.setWindowTitle(self.titulo)
         
+        # Desactivamos algunas opciones
+        self.ui.btnPlay.setEnabled(False)
+        self.ui.btnAdelantar.setEnabled(False)
+        self.ui.btnAtrasar.setEnabled(False)
+        
         # Creo un reproductor de tipo musica
         self.player = Phonon.createPlayer(Phonon.MusicCategory)
         self.player.setTickInterval(1000)
@@ -94,6 +99,12 @@ class Reproductor(QtGui.QMainWindow):
     def state(self, estado):
         if estado == Phonon.State.PlayingState:
             self.noti.show()
+        elif estado == Phonon.State.StoppedState:
+            # Cambia el icono
+            self.ui.btnPlay.setIcon(QtGui.QIcon("img/Knob Play.png"))
+        elif estado == Phonon.State.PausedState:
+            # Cambia el icono
+            self.ui.btnPlay.setIcon(QtGui.QIcon("img/Knob Pause.png"))
 
     def play(self):
         '''Reproduce un archivo'''
@@ -103,14 +114,9 @@ class Reproductor(QtGui.QMainWindow):
         if estado == Phonon.State.PlayingState:
             # Pausa la reproduccion
             self.player.pause()
-            # Cambia el icono
-            self.ui.btnPlay.setIcon(QtGui.QIcon("img/Knob Play.png"))
         else:
             # Lo reproduce
             self.player.play()
-            # Cambia el icono
-            self.ui.btnPlay.setIcon(QtGui.QIcon("img/Knob Pause.png"))
-            print self.player.currentTime()
 
     def metaData(self):
         '''Devuelve los metadatos del archivo de reproduccion'''
@@ -151,6 +157,10 @@ class Reproductor(QtGui.QMainWindow):
             self.path = archivo[0]
             self.player.setCurrentSource(self.path)
             self.ui.lstListaRep.addItem(self.path)
+            # Activamos el play
+            self.ui.btnPlay.setEnabled(True)
+            self.ui.btnAdelantar.setEnabled(True)
+            self.ui.btnAtrasar.setEnabled(True)
 
     def nuevoPerfil(self):
         '''Crea un nuevo perfil con los datos ingresados'''
