@@ -29,7 +29,6 @@ class BaseDeDatos:
         self.cur.execute("INSERT INTO Perfil(usuario, password) VALUES(?, ?)", (user, pas))
         self.con.commit()
 
-<<<<<<< HEAD
     def editarPerfil(self, newN, newP, user, pas):
         #Guardamos los cambios para que pase algo. 
         if (confpas==passNueva):
@@ -44,13 +43,12 @@ class BaseDeDatos:
             con.commit()
         else: 
             print "pelotudo confirma bien las cosas"
-=======
+
     def obtenerPerfil(self, user):
         '''Devuelve el perfil del usuario seleccionado o un vector vacio'''
         # Se fija si hay algun perfil con ese nombre
         self.cur.execute("SELECT * FROM Perfil WHERE usuario = \'%s\'" % user)
         return self.cur.fetchall()
->>>>>>> 175f8fdc7cb43d65d63fdcd47b4eda50281c6fb2
 
     def close(self):
         self.con.close()
