@@ -268,5 +268,5 @@ class Reproductor(QtGui.QMainWindow):
 app = QtGui.QApplication(sys.argv)
 app.setApplicationName("LNMusic")
 # Ejecuto la clase
-rep = Reproductor("graphic.ui", "login.ui", "ingresar.ui")
+rep = Reproductor("graphic.ui", "nuevo.ui", "ingresar.ui")
 sys.exit(app.exec_())
