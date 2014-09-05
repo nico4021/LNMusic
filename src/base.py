@@ -60,11 +60,11 @@ class BaseDeDatos:
             users.append(i[0])
         return users
     
-    def borrarPerfil(self, user, pas):
-        '''Devuelve el perfil del usuario seleccionado o un vector vacio'''
-        # Borra el perfil siempre y cuando se haya introducido la contraseña de ese perfil bien
-        self.cur.execute("DELETE FROM Perfil WHERE usuario = \'%s\' and password = \'%s\' " % (user, pas) )
-        
+    def borrarPerfil(self, user):
+        '''Borra el perfil seleccionado'''
+        # Borra el perfil
+        self.cur.execute("DELETE FROM Perfil WHERE usuario = \'%s\'" % user )
+        self.con.commit()
 
     def close(self):
         self.con.close()

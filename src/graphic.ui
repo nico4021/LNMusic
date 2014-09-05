@@ -95,16 +95,6 @@
     </property>
     <layout class="QHBoxLayout" name="seekLayout"/>
    </widget>
-   <widget class="QGraphicsView" name="gvImagen">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>10</y>
-      <width>111</width>
-      <height>101</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
@@ -308,6 +298,19 @@
     </property>
     <property name="text">
      <string>00:00</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>111</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>&lt;center&gt;&lt;img src=&quot;img/chanchito.png&quot; /&gt;&lt;/center&gt;</string>
     </property>
    </widget>
   </widget>
