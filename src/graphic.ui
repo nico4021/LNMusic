@@ -51,6 +51,9 @@
     <layout class="QHBoxLayout" name="btnLayout">
      <item>
       <widget class="QPushButton" name="btnAtrasar">
+       <property name="toolTip">
+        <string>Anterior</string>
+       </property>
        <property name="text">
         <string/>
        </property>
@@ -62,6 +65,9 @@
      </item>
      <item>
       <widget class="QPushButton" name="btnPlay">
+       <property name="toolTip">
+        <string>Reproducir / pausar</string>
+       </property>
        <property name="text">
         <string/>
        </property>
@@ -73,6 +79,9 @@
      </item>
      <item>
       <widget class="QPushButton" name="btnAdelantar">
+       <property name="toolTip">
+        <string>Siguiente</string>
+       </property>
        <property name="text">
         <string/>
        </property>
@@ -100,7 +109,7 @@
      <rect>
       <x>130</x>
       <y>4</y>
-      <width>641</width>
+      <width>581</width>
       <height>111</height>
      </rect>
     </property>
@@ -161,14 +170,21 @@
     <property name="geometry">
      <rect>
       <x>230</x>
-      <y>220</y>
+      <y>250</y>
       <width>541</width>
-      <height>311</height>
+      <height>281</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="listaLayout">
      <item>
-      <widget class="QListWidget" name="lstListaRep"/>
+      <widget class="QListWidget" name="lstListaRep">
+       <property name="selectionMode">
+        <enum>QAbstractItemView::ExtendedSelection</enum>
+       </property>
+       <property name="selectionBehavior">
+        <enum>QAbstractItemView::SelectItems</enum>
+       </property>
+      </widget>
      </item>
     </layout>
    </widget>
@@ -176,10 +192,16 @@
     <property name="geometry">
      <rect>
       <x>230</x>
-      <y>180</y>
+      <y>210</y>
       <width>31</width>
       <height>31</height>
      </rect>
+    </property>
+    <property name="toolTip">
+     <string>Buscar canción</string>
+    </property>
+    <property name="statusTip">
+     <string>Filtra canciones de la lista de reproducción</string>
     </property>
     <property name="text">
      <string/>
@@ -193,20 +215,32 @@
     <property name="geometry">
      <rect>
       <x>260</x>
-      <y>180</y>
+      <y>210</y>
       <width>351</width>
       <height>31</height>
      </rect>
     </property>
+    <property name="placeholderText">
+     <string>Ingrese el nombre de la canción</string>
+    </property>
    </widget>
    <widget class="QPushButton" name="btnDelete">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>660</x>
-      <y>180</y>
+      <y>210</y>
       <width>31</width>
       <height>31</height>
      </rect>
+    </property>
+    <property name="toolTip">
+     <string>Eliminar archivo</string>
+    </property>
+    <property name="statusTip">
+     <string>Elimina archivos de tu lista de reproducción</string>
     </property>
     <property name="text">
      <string/>
@@ -220,10 +254,19 @@
     <property name="geometry">
      <rect>
       <x>620</x>
-      <y>180</y>
+      <y>210</y>
       <width>31</width>
       <height>31</height>
      </rect>
+    </property>
+    <property name="toolTip">
+     <string>Agregar archivos</string>
+    </property>
+    <property name="statusTip">
+     <string>Selecciona uno o varios archivos para agregar a la lista de reproducción</string>
+    </property>
+    <property name="whatsThis">
+     <string/>
     </property>
     <property name="text">
      <string/>
@@ -246,13 +289,13 @@
      <enum>Qt::Vertical</enum>
     </property>
    </widget>
-   <widget class="QListWidget" name="listWidget">
+   <widget class="QListWidget" name="lstListas">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>180</y>
+      <y>210</y>
       <width>181</width>
-      <height>351</height>
+      <height>321</height>
      </rect>
     </property>
     <item>
@@ -313,6 +356,44 @@
      <string>&lt;center&gt;&lt;img src=&quot;img/chanchito.png&quot; /&gt;&lt;/center&gt;</string>
     </property>
    </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>180</y>
+      <width>161</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Listas de reproducción:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblListaActual">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>180</y>
+      <width>541</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Mi música</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -355,9 +436,9 @@
     <property name="title">
      <string>Listas de Reproducción</string>
     </property>
-    <addaction name="actionNueva_Lista_de_Reproducci_n"/>
+    <addaction name="actionNueva_Lista"/>
     <addaction name="actionGuardar"/>
-    <addaction name="actionEliminar_Lista_de_Reproducci_n"/>
+    <addaction name="actionEliminar_Lista"/>
    </widget>
    <addaction name="menuArchivo"/>
    <addaction name="menuUsuario"/>
@@ -502,7 +583,7 @@
     <bool>true</bool>
    </property>
   </action>
-  <action name="actionNueva_Lista_de_Reproducci_n">
+  <action name="actionNueva_Lista">
    <property name="icon">
     <iconset>
      <normaloff>img/Knob Add.png</normaloff>img/Knob Add.png</iconset>
@@ -526,7 +607,7 @@
     <bool>true</bool>
    </property>
   </action>
-  <action name="actionEliminar_Lista_de_Reproducci_n">
+  <action name="actionEliminar_Lista">
    <property name="icon">
     <iconset>
      <normaloff>img/Knob Cancel.png</normaloff>img/Knob Cancel.png</iconset>

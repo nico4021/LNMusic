@@ -9,24 +9,34 @@ class BaseDeDatos:
         '''Inicia self.conexion y crea las tablas si no existen'''
         # Realizamos la self.conection self.con la base de datos. De no existir, se crea.
         self.con = lite.connect(ruta)
-        # El "self.cur" seria el manejador de todas las funciones SQL. 
+        # El "self.cur" seria el manejador de todas las funciones SQL.
         self.cur = self.con.cursor()
         # self.con "self.cur.execute", llamamos a la función SQL que necesitemos, en este caso, creamos la Tabla Cancion   
-        self.cur.execute("CREATE TABLE IF NOT EXISTS Cancion(id int(100) not null, nombre TEXT(30) not null, artista TEXT(30) not null, album TEXT(30) not null, genero TEXT(30) not null, fecha TEXT(30) not null, pista int(100) not null, primary key(id))")
+        self.cur.execute("""CREATE TABLE IF NOT EXISTS Cancion(
+            id integer not null primary key, 
+            idLista integer not null, 
+            nombre TEXT not null )""")
+#            artista TEXT not null, 
+#            album TEXT not null, 
+#            genero TEXT not null, 
+#            fecha TEXT not null, 
+#            pista integer not null )""")
         # Creamos la tabla Lista (Si ya existe, no se crea)   
-        self.cur.execute("CREATE TABLE IF NOT EXISTS Lista (id int(100) not null, cancion TEXT(100) not null, primary key(id))")
+        self.cur.execute("""CREATE TABLE IF NOT EXISTS Lista (
+            id integer not null primary key, 
+            nomPerfil text not null, 
+            nombre TEXT not null )""")
         # Creamos la tabla Perfil (Si ya existe, no se crea)
-        self.cur.execute("CREATE TABLE IF NOT EXISTS Perfil (usuario TEXT not null, password TEXT not null, primary key(usuario))")
-        # Creamos la tabla crea (Si ya existe, no se crea)    
-        self.cur.execute("CREATE TABLE IF NOT EXISTS crea (idUsuario TEXT NOT NULL , idLista INTEGER NOT NULL )")
-        # Creamos la tabla pertenece (Si ya existe, no se crea)
-        self.cur.execute("CREATE TABLE IF NOT EXISTS pertenece (idCancion INTEGER NOT NULL , idLista INTEGER NOT NULL )")
+        self.cur.execute("""CREATE TABLE IF NOT EXISTS Perfil (
+            usuario TEXT not null primary key, 
+            password TEXT not null )""")
         # Utilizando "self.con.commit()" establecemos los cambios
         self.con.commit()
 
     def nuevoPerfil(self, user, pas):
         '''Funcion para crear nuevo perfil'''
         self.cur.execute("INSERT INTO Perfil(usuario, password) VALUES(?, ?)", (user, pas))
+        self.cur.execute("INSERT INTO Lista(nomPerfil, nombre) VALUES(?, ?)", (user, u'Mi música'))
         self.con.commit()
 
     def editarPerfil(self, newN, newP, user, pas):
@@ -66,6 +76,53 @@ class BaseDeDatos:
         self.cur.execute("DELETE FROM Perfil WHERE usuario = \'%s\'" % user )
         self.con.commit()
 
+    def nuevaLista(self, lista, perfil):
+        '''Funcion para crear una nueva lista de reproduccion'''
+        self.cur.execute("INSERT INTO Lista(nomPerfil, nombre) VALUES(?, ?)", (perfil, lista))
+        self.con.commit()
+
+    def obtenerIdLista(self, usuario, lista):
+        '''Devuelve el id de una lista de reproduccion'''
+        self.cur.execute("SELECT id FROM Lista WHERE nomPerfil = \'%s\' AND nombre = \'%s\'" % (usuario, lista))
+        return self.cur.fetchall()[0][0]
+
+    def obtenerListas(self, usuario):
+        '''Devuelve una lista de listas de reproduccion de un perfil'''
+        # Busca todas las listas de ese usuario
+        self.cur.execute("SELECT nombre FROM Lista WHERE nomPerfil = \'%s\'" % usuario)
+        listas_db = self.cur.fetchall()
+        listas = []
+        for i in listas_db:
+            listas.append(i[0])
+        return listas
+
+    def borrarLista(self, lista, usuario):
+        idLista = self.obtenerIdLista(usuario, lista)
+        self.cur.execute("DELETE FROM Lista WHERE id = \'%s\'" % idLista )
+        self.cur.execute("DELETE FROM Cancion WHERE idLista = \'%s\'" % idLista )
+        self.con.commit()
+
+    def agregarCanciones(self, canciones, lista, usuario):
+        idLista = self.obtenerIdLista(usuario, lista)
+
+        self.cur.execute("DELETE FROM Cancion WHERE idLista = \'%s\'" % idLista )
+
+        for cancion in canciones:
+            self.cur.execute("INSERT INTO Cancion(idLista, nombre) VALUES(%s, \'%s\')" % (idLista, cancion.text()))
+        self.con.commit()
+
+    def obtenerCanciones(self, lista, usuario):
+        '''Devuelve una lista de canciones de una lista de reproduccion y un usuario'''
+        idLista = self.obtenerIdLista(usuario, lista)
+        # Busca todas las canciones de esa lista
+        self.cur.execute("SELECT nombre FROM Cancion WHERE idLista = %s" % idLista)
+        canciones_db = self.cur.fetchall()
+        canciones = []
+        for i in canciones_db:
+            canciones.append(i[0])
+        return canciones
+
     def close(self):
+        self.cur.close()
         self.con.close()
 

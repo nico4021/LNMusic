@@ -49,15 +49,25 @@ class Reproductor(QtGui.QMainWindow):
 
         # Conecto los eventos
         self.connect(self.ui.btnPlay, QtCore.SIGNAL("clicked()"), self.play)
+        self.connect(self.ui.btnAdelantar, QtCore.SIGNAL("clicked()"), self.siguiente)
+        self.connect(self.ui.btnAtrasar, QtCore.SIGNAL("clicked()"), self.anterior)
         self.connect(self.ui.btnAdd, QtCore.SIGNAL("clicked()"), self.abrirArchivo)
+        self.connect(self.ui.lstListaRep, QtCore.SIGNAL("itemSelectionChanged()"), self.cambiaSeleccionLst)
+        self.connect(self.ui.lstListas, QtCore.SIGNAL("itemSelectionChanged()"), self.cambiaSeleccionLst2)
+        self.connect(self.ui.btnDelete, QtCore.SIGNAL("clicked()"), self.eliminarCancion)
+        self.connect(self.ui.btnSearch, QtCore.SIGNAL("clicked()"), self.filtrar)
         self.connect(self.ui.actionNuevo_Perfil, QtCore.SIGNAL("triggered()"), self.nuevoPerfil)
         self.connect(self.ui.actionCerrar_sesion, QtCore.SIGNAL("triggered()"), self.cerrarSesion)
         self.connect(self.ui.actionImportar, QtCore.SIGNAL("triggered()"), self.abrirArchivo)
         self.connect(self.ui.actionEliminar_Perfil, QtCore.SIGNAL("triggered()"), self.eliminarPerfil)
         self.connect(self.ui.actionCerrar, QtCore.SIGNAL("triggered()"), self.ui.close)
+        self.connect(self.ui.actionGuardar, QtCore.SIGNAL("triggered()"), self.guardarLista)
+        self.connect(self.ui.actionEliminar_Lista, QtCore.SIGNAL("triggered()"), self.eliminarLista)
+        self.connect(self.ui.actionNueva_Lista, QtCore.SIGNAL("triggered()"), self.nuevaLista)
         self.player.metaDataChanged.connect(self.metaData)
         self.player.stateChanged.connect(self.state)
         self.player.tick.connect(self.tick)
+        self.player.aboutToFinish.connect(self.aboutToFinish)
         
         self.ui.setWindowIcon(self.iconos["porky-w"])
 #####
@@ -111,14 +121,19 @@ class Reproductor(QtGui.QMainWindow):
     def iniciar_reproductor(self):
         # Abro la ventana
         self.ui.show()
-        self.titulo = self.titulo + "(" + self.usuario + ")"
+        self.titulo = self.titulo + " (" + self.usuario + ")"
         self.ui.setWindowTitle(self.titulo)
-        
-        # Desactivamos algunas opciones
-        self.ui.btnPlay.setEnabled(False)
-        self.ui.btnAdelantar.setEnabled(False)
-        self.ui.btnAtrasar.setEnabled(False)
-        self.ui.btnDelete.setEnabled(False)
+
+        self.ui.lstListas.clear()
+        self.ui.lstListaRep.clear()
+
+        for i in self.db.obtenerListas(self.usuario):
+            self.ui.lstListas.addItem(i)
+
+        self.ui.lblListaActual.setText(u'Mi música')
+
+        for i in self.db.obtenerCanciones(u'Mi música', self.usuario):
+            self.ui.lstListaRep.addItem(i)
 
     def tick(self, time):
         '''Se encarga de llevar la cuenta del tiempo transcurrido'''
@@ -133,9 +148,22 @@ class Reproductor(QtGui.QMainWindow):
         elif estado == Phonon.State.StoppedState:
             # Cambia el icono
             self.ui.btnPlay.setIcon(self.iconos["play"])
+            # Actualizo informacion en ventana
+            self.ui.lblTitulo.setText('-')
+            self.ui.lblArtista.setText('-')
+            self.ui.lblAlbum.setText('-')
         elif estado == Phonon.State.PausedState:
             # Cambia el icono
             self.ui.btnPlay.setIcon(self.iconos["play"])
+
+    def aboutToFinish(self):
+        self.player.clearQueue()
+
+    def anterior(self):
+        self.player.seek(0)
+
+    def siguiente(self):
+        self.player.seek(10000000)
 
     def play(self):
         '''Reproduce un archivo'''
@@ -145,9 +173,22 @@ class Reproductor(QtGui.QMainWindow):
         if estado == Phonon.State.PlayingState:
             # Pausa la reproduccion
             self.player.pause()
-        else:
-            # Lo reproduce
+        elif estado == Phonon.State.PausedState:
             self.player.play()
+        else:
+            canciones = self.ui.lstListaRep.selectedItems()
+            listaRep = []
+            
+            if canciones:
+                for i in canciones:
+                    if i is canciones[0]:
+                        self.player.setCurrentSource(i.text())
+                    else:
+                        listaRep.append(i.text())
+
+                self.player.setQueue(listaRep)
+                # Lo reproduce
+                self.player.play()
 
     def metaData(self):
         '''Devuelve los metadatos del archivo de reproduccion'''
@@ -182,14 +223,10 @@ class Reproductor(QtGui.QMainWindow):
             u"Archivos de Audio (*.mp3 *.wav *.ogg *.flac *.mp4 *.m4a)")
         
         if archivo[1]:
-            self.path = archivo[0]
-            self.player.setQueue(self.path)
-            for i in self.path:
+            path = archivo[0]
+            for i in path:
                 self.ui.lstListaRep.addItem(i)
-            # Activamos el play
-            self.ui.btnPlay.setEnabled(True)
-            self.ui.btnAdelantar.setEnabled(True)
-            self.ui.btnAtrasar.setEnabled(True)
+            
 
     def nuevoPerfilLog(self):
         self.nuevoPerfil()
@@ -262,6 +299,94 @@ class Reproductor(QtGui.QMainWindow):
             # Cierro el reproductor
             self.ui.close()
 
+    def cambiaSeleccionLst(self):
+        '''Habilita o deshabilita el boton para eliminar canciones de la lista'''
+        if self.ui.lstListaRep.selectedItems():
+            self.ui.btnDelete.setEnabled(True)
+        else:
+            self.ui.btnDelete.setEnabled(False)
+
+    def cambiaSeleccionLst2(self):
+        selec = self.ui.lstListas.selectedItems()
+
+        if selec:
+            actual = selec[0].text()
+            self.ui.lblListaActual.setText(actual)
+            self.ui.lstListaRep.clear()
+
+            for i in self.db.obtenerCanciones(actual, self.usuario):
+                self.ui.lstListaRep.addItem(i)
+
+    def eliminarCancion(self):
+        '''Elimina las canciones seleccionadas'''
+        for i in self.ui.lstListaRep.selectedItems():
+            self.ui.lstListaRep.takeItem(self.ui.lstListaRep.row(i))
+
+    def guardarLista(self):
+        listas = self.db.obtenerListas(self.usuario)
+        actual = self.ui.lblListaActual.text()
+        count = self.ui.lstListaRep.count()
+        canciones = []
+
+        if not count:
+            # Muestro una advertencia
+            QtGui.QMessageBox.warning(self.ui, 'No hay canciones', u'No hay canciones para agregar a su lista de reproduccion.')
+
+        else:
+            for i in range(count):
+                canciones.append(self.ui.lstListaRep.item(i))
+
+            if not(actual in listas):
+                self.db.nuevaLista(actual, self.usuario)
+
+            self.db.agregarCanciones(canciones, actual, self.usuario)
+
+            # Muestro un mensaje informativo
+            QtGui.QMessageBox.information(self.ui, 'Exito!!!', u'Su lista de reproduccion '+actual+' se ha guardado con exito.')
+
+    def eliminarLista(self):
+        actual = self.ui.lstListas.selectedItems()
+        
+        if actual[0].text() == u'Mi música':
+            QtGui.QMessageBox.critical(self.ui, 'Error!!!', u'No se puede eliminar la lista de reproduccion '+actual[0].text()+'.')
+        elif actual:
+            # Pido una confirmacion para eliminar lista
+            msj = QtGui.QMessageBox.warning(self.ui, u'¿Eliminar lista de reproduccion?', u'¿Esta seguro que desea eliminar la lista de reproduccion '+actual[0].text()+'?', QtGui.QMessageBox.Cancel | QtGui.QMessageBox.Ok, QtGui.QMessageBox.Cancel)
+            
+            # Si se acepto
+            if msj == QtGui.QMessageBox.Ok:
+                self.db.borrarLista(actual[0].text(), self.usuario)
+                self.ui.lstListas.takeItem(self.ui.lstListas.row(actual[0]))
+                # Muestro un mensaje de exito
+                QtGui.QMessageBox.information(self.ui, 'Exito!!!', u'La lista de reproduccion se ha eliminado correctamente.')
+
+        else:
+            QtGui.QMessageBox.critical(self.ui, 'Error!!!', u'Debe seleccionar una lista de reproduccion.')
+
+    def nuevaLista(self):
+        listas = self.db.obtenerListas(self.usuario)
+        text, ok = QtGui.QInputDialog.getText(self, 'Nueva lista', 'Nombre de la lista:')
+
+        if ok:
+            if text and not(text in listas):
+                self.db.nuevaLista(text, self.usuario)
+                self.ui.lstListas.addItem(text)
+                QtGui.QMessageBox.information(self.ui, 'Exito', u'Lista '+text+' creada con exito.')
+            else:
+                QtGui.QMessageBox.critical(self.ui, 'Error!!!', u'Debe ingresar un nombre valido.')
+
+    def filtrar(self):
+        filtro = self.ui.leSearch.text()
+        items = self.ui.lstListaRep.findItems(filtro, QtCore.Qt.MatchContains)
+        lista = []
+
+        for i in range(len(items)):
+            lista.append(items[i].text())
+
+        self.ui.lstListaRep.clear()
+        
+        for i in lista:
+            self.ui.lstListaRep.addItem(i)
 
 
 # Creo una aplicacion, le pongo nombre
